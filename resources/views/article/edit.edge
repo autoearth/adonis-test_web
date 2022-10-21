@@ -1,0 +1,49 @@
+@layout('layouts/main')
+
+@section('body')
+
+        <div class="m-auto mt-5"> 
+
+                <form action="{{ route('news_update',[article.slug]) }}" method="POST" class="container col-lg-6">
+
+                    <h1>Update Article</h1>
+                    {{ csrfField() }}
+                    <div class="mb-3">
+                        <label for="title" class="form-lable">Article Title</label>
+                        <input type="text" class="form-control" id="title" name="title" 
+                        placeholder="Article title" value="{{article.title}}">
+                    </div>
+                   
+                    @if(flashMessages.has('errors.title'))
+                    <p class="alert alert-danger"> {{ flashMessages.get('errors.title') }} </p>
+                    @end
+
+                    <div class="mb-3">
+                        <label class="input-group-text" for="image">Upload</label>
+                        <input type="file" class="form-control" id="image"/>
+                    </div>
+                    @if(flashMessages.has('errors.image'))
+                    <p class="alert alert-danger"> {{ flashMessages.get('errors.image') }} </p>
+                    @end
+
+                    <div class="mb-3">
+                        <label class="form-lable" for="content">Write Article</label>
+                        <textarea name="content" id="content" class="form-control" 
+                        rows="3" placeholder="article content">{{ article.content }}
+                        </textarea>
+
+                    </div>
+                    
+                    @if(flashMessages.has('errors.content'))
+                    <p class="alert alert-danger"> {{ flashMessages.get('errors.content') }} </p>
+                    @end
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-primary mb-3">create</button>
+                    </div>
+                    
+                </form>
+
+        </div>
+       
+
+    @end

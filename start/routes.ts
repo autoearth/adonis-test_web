@@ -24,12 +24,7 @@ import ArticlesController from 'App/Controllers/Http/ArticlesController';
 
 Route.get('/', async ({ view }) => {
   return view.render('welcome')
-})
-
-
-// Route.get('/news',({view}) => {
-//   return view.render("news.view");
-// })
+});
 
 
 Route.get("/news", "ArticlesController.view").as("news_view");
@@ -37,6 +32,10 @@ Route.get("/news", "ArticlesController.view").as("news_view");
 Route.get("/news/create", "ArticlesController.create").as("news_create");
 
 Route.post("/news","ArticlesController.store").as("news_store");
+
+Route.get("/news/:slug/edit","ArticlesController.edit").as("news_edit");
+
+Route.patch("/news/:slug","ArticlesController.update").as("news_update");
 
 
 Route.patch("/news/:id",({params}) => {

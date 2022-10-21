@@ -1,5 +1,6 @@
 // import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 
+
 import Database from "@ioc:Adonis/Lucid/Database";
 import CreateArticleValidator from "App/Validators/CreateArticleValidator";
 
@@ -23,6 +24,18 @@ export default class ArticlesController {
             return response.redirect().back();
 
       
+    }
+
+
+    public async edit({view , params}) {
+        const { slug } = params;
+        const article = await Database.from("articles").where("slug",slug).first();
+        return view.render("article/edit",{article});
+    }
+
+
+    public update() {
+        // return View
     }
 
 

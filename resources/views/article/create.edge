@@ -2,28 +2,47 @@
 
 @section('body')
 
-        <h1>Create Article</h1>
+<div class="m-auto mt-5"> 
 
-        <form action="{{ route('news_store') }}" method="POST">
+        <form action="{{ route('news_store') }}" method="POST" class="container col-lg-6">
 
-             {{ csrfField() }}
-            <input type="text" name="title" placeholder="Article title">
+            <h1>Create Article</h1>
+
+            {{ csrfField() }}
+            <div class="mb-3">
+                <label for="title" class="form-lable">Article Title</label>
+                <input type="text" class="form-control" id="title" name="title" 
+                placeholder="Article title">
+            </div>
+           
             @if(flashMessages.has('errors.title'))
-            <p> {{ flashMessages.get('errors.title') }} </p>
+            <p class="alert alert-danger"> {{ flashMessages.get('errors.title') }} </p>
             @end
 
-            <input type="file" name="image" id="">
+            <div class="mb-3">
+                <label class="input-group-text" for="image">Upload</label>
+                <input type="file" class="form-control" id="image"/>
+            </div>
             @if(flashMessages.has('errors.image'))
-            <p> {{ flashMessages.get('errors.image') }} </p>
+            <p class="alert alert-danger"> {{ flashMessages.get('errors.image') }} </p>
             @end
-            <textarea name="content" id="" cols="30" rows="10" placeholder="article content"></textarea>
-            @if(flashMessages.has('errors.content'))
-            <p> {{ flashMessages.get('errors.content') }} </p>
-            @end
-            <button type="submit">create</button>
+
+
+            <div class="mb-3">
+                    <label class="form-lable" for="content">Write Article</label>
+                    <textarea name="content" id="content" class="form-control" 
+                    rows="3" placeholder="article content">
+                    </textarea>
+
+                </div>
+                
+                @if(flashMessages.has('errors.content'))
+                <p class="alert alert-danger"> {{ flashMessages.get('errors.content') }} </p>
+                @end
+                <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-primary mb-3">create</button>
+                </div>
         </form>
 
-
-       
-
-    @end
+ </div>
+@end
